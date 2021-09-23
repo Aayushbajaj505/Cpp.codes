@@ -24,4 +24,33 @@ int main()
             cin >> a2[i][j];
         }
     }
+    // making ans array zero
+    for (int i = 0; i < n1; i++)
+    {
+        for (int j = 0; j < n3; j++)
+        {
+            ans[i][j] = 0;
+        }
+    }
+    // matrix multiplication
+    // loop1 for rows of matrix1-a1
+    for (int i = 0; i < n1; i++)
+    {
+        // loop2 for columns of matrix2-a2
+        for (int j = 0; j < n3; j++)
+        {
+            // multiplying and adding them
+            for (int k = 0; k < n2; k++)
+            {
+                ans[i][j] += a1[i][k] * a2[k][j];
+            }
+        }
+    }
+    for (int i = 0; i < n1; i++)
+    {
+        for (int j = 0; j < n3; j++)
+        {
+            cout << ans[i][j] << " ";
+        }
+    }
 }
