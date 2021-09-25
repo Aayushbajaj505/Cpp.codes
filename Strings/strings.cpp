@@ -23,4 +23,6 @@ int main()
     string s1 = "786";
     cout << stoi(s1) + 2 << endl;
     string s2 = "skjfhbvgniukh";
+    sort(s2.begin(), s1.end());
+    cout << s2 << endl;
 }
