@@ -3,11 +3,12 @@
 #include <string>
 #include <climits>
 using namespace std;
+
 // algorithm used is backstracking
 // BackTracking is an algorithmic technique for solving
 // recursive problems by trying top build every
 // possible solution incrementally, and removing
-// those solutions tha tfail to satisfy the constraints of the problem\
+// those solutions tha fail to satisfy the constraints of the problem\
 // at any point of time.
 bool isSafe(int **arr, int x, int y, int n)
 {

@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+//O(Log(N))
 int binarySearch(int arr[], int size, int key)
 {
     int s = 0;
