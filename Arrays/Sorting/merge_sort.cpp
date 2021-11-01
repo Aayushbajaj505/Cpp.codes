@@ -18,7 +18,7 @@ void merge(int arr[], int l, int mid, int r)
     {
         a[i] = arr[l + i];
     }
-    for (int i = 0; i < n1; i++)
+    for (int i = 0; i < n2; i++)
     {
         b[i] = arr[mid + 1 + i];
     }
@@ -68,4 +68,11 @@ void mergeSort(int arr[], int l, int r)
 }
 int main()
 {
+    int arr[] = {5, 4, 3, 2, 1};
+    mergeSort(arr, 0, 4);
+    for (int i = 0; i < 5; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
 }
