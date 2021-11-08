@@ -4,17 +4,11 @@
 #include <climits>
 #include <vector>
 using namespace std;
-// insert at head
-// insert at tail
-// delete at head
-// deleteionl
-// search
-
 class node
 {
 public:
-    int data;   //value
-    node *next; //pointer to the next node
+    int data;
+    node *next;
 
     node(int val)
     {
@@ -22,10 +16,8 @@ public:
         next = NULL;
     }
 };
-// taking head by pointer because we have to modify the list
 void insertAtTail(node *&head, int val)
 {
-
     node *n = new node(val);
     if (head == NULL)
     {
@@ -41,53 +33,12 @@ void insertAtTail(node *&head, int val)
         itr->next = n;
     }
 }
-
-bool search(node *&head, int key)
-{
-    node *itr = head;
-    while (itr->next != NULL)
-    {
-        if (itr->data == key)
-        {
-            return true;
-        }
-        itr = itr->next;
-    }
-    return false;
-}
-
-void insertAtHead(node *&head, int val)
-{
-    node *n = new node(val);
-    if (head == NULL)
-    {
-        head = n;
-    }
-    else
-    {
-        n->next = head;
-        head = n;
-    }
-}
-// takking head by value
-void display(node *head)
-{
-    node *itr = head;
-    while (itr)
-    {
-        cout << itr->data << "->";
-        itr = itr->next;
-    }
-    cout << endl;
-}
-
 void deleteAtHead(node *&head)
 {
     node *todelist = head;
     head = NULL;
     delete todelist;
 }
-
 void deleteion(node *&head, int val)
 {
     if (head == NULL)
@@ -105,9 +56,22 @@ void deleteion(node *&head, int val)
     }
     node *todelist = itr->next;
     itr->next = itr->next->next;
-    // delete todelist;
+    delete todelist;
 }
 
+void insertAtHead(node *head, int val)
+{
+    node *n = new node(val);
+    if (head == NULL)
+    {
+        head = n;
+    }
+    else
+    {
+        n->next = head; // first we need to make the link then
+        n = head;       // rename the new node as head
+    }
+}
 node *reverseList(node *&head)
 {
     // iterator method
@@ -124,9 +88,19 @@ node *reverseList(node *&head)
     }
     return prev;
 }
+void display(node *head)
+{
+    node *itr = head;
+    while (itr->next)
+    {
+        cout << itr->data << "->";
+        itr = itr->next;
+    }
+    cout << endl;
+}
 node *reverseListRecursive(node *&head)
 {
-    if (head->next = NULL || head == NULL)
+    if (head->next == NULL || head == NULL)
     {
         return head;
     }
@@ -139,15 +113,14 @@ node *reverseListRecursive(node *&head)
 int main()
 {
     node *head = NULL;
+
     insertAtTail(head, 1);
     insertAtTail(head, 2);
     insertAtTail(head, 3);
     insertAtTail(head, 4);
     display(head);
-    // insertAtHead(head, 0);
-    // display(head);
-    // deleteion(head, 3);
-    // display(head);
+    insertAtHead(head, 0);
+    display(head);
     node *newhead = reverseListRecursive(head);
     display(newhead);
 }
