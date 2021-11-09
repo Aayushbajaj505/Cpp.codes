@@ -124,9 +124,10 @@ node *reverseList(node *&head)
     }
     return prev;
 }
+
 node *reverseListRecursive(node *&head)
 {
-    if (head->next = NULL || head == NULL)
+    if (head->next == NULL || head == NULL)
     {
         return head;
     }
@@ -136,6 +137,28 @@ node *reverseListRecursive(node *&head)
 
     return newhead;
 }
+
+node *reversek(node *&head, int k)
+{
+    node *prev = NULL;
+    node *curr = head;
+    node *next;
+    int count = 0;
+    while (curr != NULL && count < k)
+    {
+        next = curr->next;
+        curr->next = prev;
+
+        prev = curr;
+        curr = next;
+        count++;
+    }
+    if (next != NULL)
+    {
+        head->next = reversek(next, k);
+    }
+    return prev;
+}
 int main()
 {
     node *head = NULL;
@@ -143,11 +166,12 @@ int main()
     insertAtTail(head, 2);
     insertAtTail(head, 3);
     insertAtTail(head, 4);
+    insertAtTail(head, 5);
+    insertAtHead(head, 0);
     display(head);
-    // insertAtHead(head, 0);
     // display(head);
     // deleteion(head, 3);
     // display(head);
-    node *newhead = reverseListRecursive(head);
+    node *newhead = reversek(head, 2);
     display(newhead);
 }
