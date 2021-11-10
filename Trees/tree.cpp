@@ -36,12 +36,31 @@ void printTree(TreeNode<int> *root)
     }
 }
 
+TreeNode<int> *takeInput()
+{
+    cout << "enter data" << endl;
+    int rootdata;
+    cin >> rootdata;
+    TreeNode<int> *root = new TreeNode<int>(rootdata);
+
+    int n;
+    cout << "enter num of children : ";
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        TreeNode<int> *child = takeInput();
+        root->children.push_back(child);
+    }
+    return root;
+}
 int main()
 {
-    TreeNode<int> *root = new TreeNode<int>(1);
-    TreeNode<int> *node1 = new TreeNode<int>(2);
-    TreeNode<int> *node2 = new TreeNode<int>(3);
-    root->children.push_back(node1);
-    root->children.push_back(node2);
+    // TreeNode<int> *root = new TreeNode<int>(1);
+    // TreeNode<int> *node1 = new TreeNode<int>(2);
+    // TreeNode<int> *node2 = new TreeNode<int>(3);
+    // root->children.push_back(node1);
+    // root->children.push_back(node2);
+    // printTree(root);
+    TreeNode<int> *root = takeInput();
     printTree(root);
 }
