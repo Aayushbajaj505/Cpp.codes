@@ -6,6 +6,10 @@
 using namespace std;
 int main()
 {
+    // dynamically allocated - you will have to delete it yourself otherwise chance of a memory leak.
+    vector<int> *vp = new vector<int>();
+
+    // static allocation - deleted automatically after the scope of the object ends
     vector<int> v;
     // vectors are dynamic size arrays with the ability to resize itself
     // with push back the elements get added to the last of the vector
