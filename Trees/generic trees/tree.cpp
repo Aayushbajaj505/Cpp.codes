@@ -17,6 +17,13 @@ public:
     {
         this->data = data;
     }
+    ~TreeNode()
+    {
+        for (int i = 0; i < children.size(); i++)
+        {
+            delete children[i];
+        }
+    }
 };
 
 void printTree(TreeNode<int> *root)
@@ -125,7 +132,7 @@ void printatLevelK(TreeNode<int> *root, int k)
 
 int findHeight(TreeNode<int> *root)
 {
-    int height = -1;
+    int height = 0;
     for (int i = 0; i < root->children.size(); i++)
     {
         int th = findHeight(root->children[i]);
@@ -134,6 +141,7 @@ int findHeight(TreeNode<int> *root)
     height += 1;
     return height;
 }
+
 int leafNodes(TreeNode<int> *root)
 {
     int count = 0;
@@ -150,16 +158,36 @@ int leafNodes(TreeNode<int> *root)
     }
     return count;
 }
+
+void preorder(TreeNode<int> *root)
+{
+    if (root == NULL)
+        return;
+    cout << root->data << " ";
+    for (int i = 0; i < root->children.size(); i++)
+    {
+        preorder(root->children[i]);
+    }
+}
+
+void postorder(TreeNode<int> *root)
+{
+    for (int i = 0; i < root->children.size(); i++)
+    {
+        postorder(root->children[i]);
+        cout << root->children[i]->data;
+    }
+}
+
 int main()
 {
-    // TreeNode<int> *root = new TreeNode<int>(1);
-    // TreeNode<int> *node1 = new TreeNode<int>(2);
-    // TreeNode<int> *node2 = new TreeNode<int>(3);
-    // root->children.push_back(node1);
-    // root->children.push_back(node2);
-    // printTree(root);
+    // 1 3 2 3 4 2 5 6 2 7 8 0 0 0 0 1 9 0
     TreeNode<int> *root = takeInputLevelwise();
     printTree(root);
     cout << leafNodes(root) << endl;
-    cout << findHeight(root);
+    cout << findHeight(root) << endl;
+    preorder(root);
+    cout << endl;
+    postorder(root);
+    delete root;
 }
