@@ -99,6 +99,57 @@ TreeNode<int> *takeInputLevelwise()
     }
     return root;
 }
+
+int countNodes(TreeNode<int> *root)
+{
+    int count = 1;
+    for (int i = 0; i < root->children.size(); i++)
+    {
+        count += countNodes(root->children[i]);
+    }
+    return count;
+};
+
+void printatLevelK(TreeNode<int> *root, int k)
+{
+    if (k == 0)
+    {
+        cout << root->data << endl;
+        return;
+    }
+    for (int i = 0; i < root->children.size(); i++)
+    {
+        printatLevelK(root->children[i], k - 1);
+    }
+}
+
+int findHeight(TreeNode<int> *root)
+{
+    int height = -1;
+    for (int i = 0; i < root->children.size(); i++)
+    {
+        int th = findHeight(root->children[i]);
+        height = max(height, th);
+    }
+    height += 1;
+    return height;
+}
+int leafNodes(TreeNode<int> *root)
+{
+    int count = 0;
+    if (root->children.size() == 0)
+    {
+        return 1;
+    }
+    else
+    {
+        for (int i = 0; i < root->children.size(); i++)
+        {
+            count += leafNodes(root->children[i]);
+        }
+    }
+    return count;
+}
 int main()
 {
     // TreeNode<int> *root = new TreeNode<int>(1);
@@ -109,4 +160,6 @@ int main()
     // printTree(root);
     TreeNode<int> *root = takeInputLevelwise();
     printTree(root);
+    cout << leafNodes(root) << endl;
+    cout << findHeight(root);
 }
