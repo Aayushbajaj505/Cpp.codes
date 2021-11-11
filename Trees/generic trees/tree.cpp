@@ -179,15 +179,37 @@ void postorder(TreeNode<int> *root)
     }
 }
 
+// void maxSumUntil(TreeNode<int> *root, TreeNode<int> *resNode, int maxsum)
+// {
+//     int currsum = root->data;
+//     for (int i = 0; i < root->children.size(); i++)
+//     {
+//         currsum = root->children[i]->data;
+//         maxSumUntil(root->children[i], resNode, maxsum);
+//         if (currsum > maxsum)
+//         {
+//             resNode = root;
+//             maxsum = currsum;
+//         }
+//     }
+// }
+// int maxChildSum(TreeNode<int> *root)
+// {
+//     TreeNode<int> *resNode;
+//     int maxSum = 0;
+//     maxSumUntil(root, resNode, maxSum);
+//     return resNode->data;
+// }
+
 int main()
 {
     // 1 3 2 3 4 2 5 6 2 7 8 0 0 0 0 1 9 0
     TreeNode<int> *root = takeInputLevelwise();
     printTree(root);
-    cout << leafNodes(root) << endl;
-    cout << findHeight(root) << endl;
-    preorder(root);
-    cout << endl;
-    postorder(root);
+    // cout << leafNodes(root) << endl;
+    // cout << findHeight(root) << endl;
+    // preorder(root);
+    // cout << endl;
+    // postorder(root);
     delete root;
 }
