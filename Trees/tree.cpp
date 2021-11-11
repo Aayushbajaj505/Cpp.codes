@@ -25,16 +25,20 @@ void printTree(TreeNode<int> *root)
     {
         return;
     }
-    cout << root->data << " : ";
+    // print root
+    cout << root->data << ":";
+    // print all the children of the current root node
     for (int i = 0; i < root->children.size(); i++)
     {
         cout << root->children[i]->data << ",";
     }
     cout << endl;
+    // recusrsive call for the next node in the tree
     for (int i = 0; i < root->children.size(); i++)
     {
         printTree(root->children[i]);
     }
+    // no need orf base condition as we are using for loop
 }
 
 TreeNode<int> *takeInput()
