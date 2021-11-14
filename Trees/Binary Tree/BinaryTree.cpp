@@ -170,6 +170,23 @@ BTNode<int> *buildtree(int *in, int *pre, int size)
     return buildTreeHelper(in, pre, 0, size - 1, 0, size - 1);
 }
 
+int height(BTNode<int> *root)
+{
+    if (root == NULL)
+        return 0;
+    return max(height(root->left), height(root->right)) + 1;
+}
+
+int diameter(BTNode<int> *root)
+{
+    if (root == NULL)
+        return 0;
+    int option1 = height(root->left) + height(root->right);
+    int option2 = diameter(root->left);
+    int option3 = diameter(root->right);
+    return max(option1, option2, option3);
+}
+
 int main()
 {
     // 1 2 3 4 5 6 7 -1 -1 8 9 -1 -1 -1 -1 -1 -1 -1 -1
