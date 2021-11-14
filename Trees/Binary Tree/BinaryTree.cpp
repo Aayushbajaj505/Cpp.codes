@@ -135,6 +135,41 @@ void inorder(BTNode<int> *root)
     inorder(root->right);
 }
 
+BTNode<int> *buildTreeHelper(int *in, int *pre, int inS, int inE, int preS, int preE)
+{
+    if (inS > inE)
+    {
+        return NULL;
+    }
+    int rootData = pre[preS];
+    int rootIndex = -1;
+    for (int i = inS; i <= inE; i++)
+    {
+        if (in[i] == rootData)
+        {
+            rootIndex = i;
+            break;
+        }
+    }
+    int lPreS = preS + 1;     //Left Pre Order start
+    int lPreE;                //Left Pre Order end
+    int lInS = inS;           //Left In Order start
+    int lInE = rootIndex - 1; //Left In In Order end
+    int rPreS;                //right pre Order start
+    int rPreE = preE;         //right pre Order end
+    int rInS;                 // right in order start
+    int rInE = inE;           //right in order end
+    BTNode<int> *root = new BTNode<int>(rootData);
+    root->left = buildTreeHelper(in, pre, lInS, lInE, lPreS, lPreE);
+    root->right = buildTreeHelper(in, pre, rInS, rInE, rPreS, rPreE);
+    return root;
+}
+
+BTNode<int> *buildtree(int *in, int *pre, int size)
+{
+    return buildTreeHelper(in, pre, 0, size - 1, 0, size - 1);
+}
+
 int main()
 {
     // 1 2 3 4 5 6 7 -1 -1 8 9 -1 -1 -1 -1 -1 -1 -1 -1
