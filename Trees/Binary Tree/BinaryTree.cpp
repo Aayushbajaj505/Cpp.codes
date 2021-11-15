@@ -187,6 +187,27 @@ int diameter(BTNode<int> *root)
     return max(option1, option2, option3);
 }
 
+pair<int, int> DiaHeight(BTNode<int> *root)
+{
+    if (root == NULL)
+    {
+        pair<int, int> p;
+        p.first = 0;
+        p.second = 0;
+        return p;
+    }
+    pair<int, int> leftans = DiaHeight(root->left);
+    pair<int, int> rightans = DiaHeight(root->right);
+    int ld = leftans.second;
+    int lh = leftans.first;
+    int rd = rightans.second;
+    int rh = rightans.first;
+    pair<int, int> output;
+    output.first = max(ld, rd);
+    output.second = max(lh, rh);
+    return output;
+}
+
 int main()
 {
     // 1 2 3 4 5 6 7 -1 -1 8 9 -1 -1 -1 -1 -1 -1 -1 -1
