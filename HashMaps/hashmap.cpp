@@ -35,4 +35,20 @@ int main()
     // erase an element
     ourmap.erase("ghi");
     cout << ourmap.size() << endl;
+
+    // iterator
+    ourmap["def1"] = 1;
+    ourmap["def2"] = 2;
+    ourmap["def3"] = 3;
+    ourmap["def4"] = 4;
+    ourmap["def5"] = 5;
+    ourmap["def6"] = 6;
+
+    unordered_map<string, int>::iterator it = ourmap.begin();
+    while (it != ourmap.end())
+    {
+        cout << it->first << " ";
+        cout << it->second << endl;
+        it++;
+    }
 }

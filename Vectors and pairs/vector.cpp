@@ -50,7 +50,14 @@ int main()
         cout << element;
     }
     cout << endl;
-
+    // iterator
+    vector<int>::iterator it1 = v.begin();
+    cout << "iterator";
+    while (it1 != v.end())
+    {
+        cout << *it1 << endl;
+        it1++;
+    }
     // sort a vector
     sort(v.begin(), v.end());
 }
