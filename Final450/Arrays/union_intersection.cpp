@@ -35,13 +35,13 @@ void Union(int *arr, int s1, int *arr1, int s2)
     }
     for (auto i = ui.begin(); i != ui.end(); ++i)
     {
-        cout << (*i) << endl;
+        cout << (*i) << " ";
     }
 }
 int main()
 {
     int arr1[] = {1, 6, 4, 5, 7};
     int arr2[] = {2, 3, 5, 6};
-    // Union(arr1, 5, arr2, 4);
-    interection(arr1, 5, arr2, 4);
+    Union(arr1, 5, arr2, 4);
+    // interection(arr1, 5, arr2, 4);
 }
