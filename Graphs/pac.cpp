@@ -7,32 +7,31 @@
 #include <queue>
 #include <unordered_map>
 using namespace std;
-void printBFS(int **edges, int n, int sv, bool *visited)
+void printBfs(int **edges, int n, int sv)
 {
-    queue<int> pendingVertices;
-    // bool visited[n] = {false};
-    pendingVertices.push(sv);
-    visited[sv] = true;
-    while (!pendingVertices.empty())
+    bool visited1[n] = {false};
+    queue<int> q;
+    q.push(sv);
+    while (!q.empty())
     {
-        int currvertex = pendingVertices.front();
-        pendingVertices.pop();
-        cout << currvertex << endl;
+        int currVertex = q.front();
+        q.pop();
+        cout << currVertex;
         for (int i = 0; i < n; i++)
         {
-            if (i == currvertex)
+            if (i == currVertex)
             {
                 continue;
             }
-            if (edges[currvertex][i] == 1 && !visited[i])
+            if (edges[currVertex][i] == 1 && !visited1[i])
             {
-                pendingVertices.push(i);
-                visited[i] = true;
+                q.push(i);
+                visited1[i] = true;
             }
         }
     }
 }
-void print(int **edges, int n, int sv, bool *visited)
+void printDfs(int **edges, int n, int sv, bool *visited)
 {
     cout << sv << endl;
     visited[sv] = true;
@@ -44,11 +43,11 @@ void print(int **edges, int n, int sv, bool *visited)
         }
         if (edges[sv][i] == 1)
         {
-            if (visited[i] == true)
+            if (visited[i] == 1)
             {
                 continue;
             }
-            print(edges, n, i, visited);
+            printDfs(edges, n, i, visited);
         }
     }
 }
@@ -58,6 +57,7 @@ int main()
     int e;
     cin >> n >> e;
     int **edges = new int *[n];
+    // matrix creation
     for (int i = 0; i < n; i++)
     {
         edges[i] = new int[n];
@@ -66,7 +66,8 @@ int main()
             edges[i][j] = 0;
         }
     }
-    for (int i = 0; i < e; i++)
+    // matrix data input
+    for (int i = 0; i < n; i++)
     {
         int f, s;
         cin >> f >> s;
@@ -74,10 +75,5 @@ int main()
         edges[s][f] = 1;
     }
     bool visited[n] = {false};
-    // cout << "DFS";
-    // print(edges, n, 0, visited);
-    cout << "BFS";
-    printBFS(edges, n, 0, visited);
-    // delete[] edges;
-    // delete[] visited;
+    printDfs(edges, n, 0, visited);
 }
