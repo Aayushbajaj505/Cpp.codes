@@ -32,7 +32,7 @@ void printBFS(int **edges, int n, int sv, bool *visited)
         }
     }
 }
-void print(int **edges, int n, int sv, bool *visited)
+void printDFS(int **edges, int n, int sv, bool *visited)
 {
     cout << sv << endl;
     visited[sv] = true;
@@ -48,9 +48,65 @@ void print(int **edges, int n, int sv, bool *visited)
             {
                 continue;
             }
-            print(edges, n, i, visited);
+            printDFS(edges, n, i, visited);
         }
     }
+}
+void DFS(int **edges, int n)
+{
+    bool *Dvisited = new bool[n];
+    for (int i = 0; i < n; i++)
+    {
+        Dvisited[i] = false;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        if (!Dvisited[i])
+        {
+            printDFS(edges, n, i, Dvisited);
+        }
+    }
+    delete[] Dvisited;
+}
+void BFS(int **edges, int n)
+{
+    bool *Bvisited = new bool[n];
+    for (int i = 0; i < n; i++)
+    {
+        Bvisited[i] = false;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        if (!Bvisited[i])
+        {
+            printBFS(edges, n, i, Bvisited);
+        }
+    }
+    delete[] Bvisited;
+}
+bool hasPath(int **edges, int n, int sv, int ev, bool *visited)
+{
+    if (sv == ev)
+    {
+        return true;
+    }
+    visited[sv] = true;
+    for (int i = 0; i < n; i++)
+    {
+        if (i == sv)
+        {
+            continue;
+        }
+        if (edges[sv][i] == 1)
+        {
+            if (visited[i] == true)
+            {
+                continue;
+            }
+            hasPath(edges, n, i, ev, visited);
+        }
+    }
+    return false;
 }
 int main()
 {
@@ -73,11 +129,8 @@ int main()
         edges[f][s] = 1;
         edges[s][f] = 1;
     }
-    bool visited[n] = {false};
-    // cout << "DFS";
-    // print(edges, n, 0, visited);
-    cout << "BFS";
-    printBFS(edges, n, 0, visited);
-    // delete[] edges;
-    // delete[] visited;
+    cout << "DFS" << endl;
+    DFS(edges, n);
+    cout << "BFS" << endl;
+    BFS(edges, n);
 }
