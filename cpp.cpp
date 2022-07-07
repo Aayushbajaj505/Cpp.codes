@@ -7,16 +7,11 @@
 #include <queue>
 #include <unordered_map>
 using namespace std;
-int main()
-{
-    string A = "LLLLRRRLRLRL";
-    stack<char> st;
-    int l = A.length();
-    for (int i = 0; i < l; i++)
+// input string s1="Hackerearth", s2="Earth", k=4 
+void main() {
+    int x=10;
     {
-        st.push(A[i]);
-        cout << st.top();
+        int x=0;
+        cout<<x;
     }
-
-    return 0;
 }
