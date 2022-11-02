@@ -21,7 +21,7 @@ void merge(int *array, int l, int m, int r)
     i = 0;
     j = 0;
     k = l;
-    //marge temp arrays to real array
+    //merge temp arrays to real array
     while (i < nl && j < nr)
     {
         if (larr[i] <= rarr[j])
