@@ -24,6 +24,7 @@ public:
         delete right;
     }
 };
+
 class isBSTReturn
 {
 public:
@@ -31,6 +32,7 @@ public:
     int minimum;
     int maximum;
 };
+
 BTNode<int> *takeInputLevelwise()
 {
     int rootdata;
@@ -68,6 +70,7 @@ BTNode<int> *takeInputLevelwise()
     }
     return root;
 }
+
 BTNode<int> *search(BTNode<int> *root, int key)
 {
     if (root == NULL)
@@ -85,12 +88,14 @@ BTNode<int> *search(BTNode<int> *root, int key)
         return search(root->left, key);
     }
 }
+
 int minimum(BTNode<int> *root)
 {
     if (root == NULL)
         return INT_MAX;
     return min(root->data, min(minimum(root->right), minimum(root->left)));
 }
+
 int maximum(BTNode<int> *root)
 {
     if (root == NULL)
@@ -131,7 +136,6 @@ isBSTReturn isBST2(BTNode<int> *root)
     output.maximum = maximum;
     return output;
 }
-
 // top to bottom approach
 // we push the constraints down
 bool isBST3(BTNode<int> *root, int min = INT_MIN, int max = INT_MAX)

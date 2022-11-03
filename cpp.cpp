@@ -7,13 +7,26 @@
 #include <queue>
 #include <unordered_map>
 using namespace std;
-// bubble sort
-void bubbleSort(int *arr, int size)
+void insertionsort(int *arr, int n)
 {
-    int counter = 1;
-    while (counter < size)
+    for (int i = 1; i < n; i++)
     {
-        for (int i = 0; i < size; i++)
+        int curr = arr[i];
+        int j = i - 1;
+        while (arr[j] > curr)
+        {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = curr;
+    }
+}
+void bubblsort(int *arr, int n)
+{
+    int c = 1;
+    while (c < n)
+    {
+        for (int i = 0; i < n; i++)
         {
             if (arr[i] > arr[i + 1])
             {
@@ -21,25 +34,22 @@ void bubbleSort(int *arr, int size)
                 arr[i] = arr[i + 1];
                 arr[i + 1] = temp;
             }
+            c++;
         }
-        counter++;
     }
 }
 void merge(int *arr, int l, int m, int r)
 {
     int i, j, k, nl, nr;
-    nl = m - l;
-    nr = r - m - 1;
+    nl = m - l + 1;
+    nr = r - m;
     int larr[nl], rarr[nr];
     for (i = 0; i < nl; i++)
-    {
         larr[i] = arr[l + i];
-    }
     for (j = 0; j < nr; j++)
-    {
-        rarr[j] = arr[m + 1 + j];
-    }
-    i, j, k = 0;
+        rarr[j] = arr[m + j + 1];
+    i, j = 0;
+    k = 1;
     while (i < nl && j < nr)
     {
         if (larr[i] <= rarr[j])
@@ -67,29 +77,15 @@ void merge(int *arr, int l, int m, int r)
         k++;
     }
 }
-void mergeSort(int *arr, int l, int r)
+void mergesort(int *arr, int l, int r)
 {
     int m;
     if (l < r)
     {
         m = l + (r - 1) / 2;
-        mergeSort(arr, l, m);
-        mergeSort(arr, m + 1, r);
+        mergesort(arr, l, m);
+        mergesort(arr, m + 1, r);
         merge(arr, l, m, r);
-    }
-}
-void insertionsort(int *arr, int size)
-{
-    for (int i = 1; i < size; i++)
-    {
-        int curr = arr[i];
-        int j = i - 1;
-        while (arr[j] > arr[j + 1] && j >= 0)
-        {
-            arr[j + 1] = arr[j];
-            j--;
-        }
-        arr[j + 1] = curr;
     }
 }
 int main()
