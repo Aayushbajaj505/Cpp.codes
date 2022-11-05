@@ -13,7 +13,7 @@ string binary_search(vector<string> s, string key)
     int e = s.size() - 1;
     while (st <= e)
     {
-        int m = (st + (e - 1)) / 2;
+        int m = (st + (e - st)) / 2;
         // cout << s[m];
         if (key == s[m])
         {
