@@ -7,16 +7,19 @@
 #include <queue>
 #include <unordered_map>
 using namespace std;
-
+string checklock(string pass)
+{
+    if (pass == "4916")
+        return "granted";
+    else
+        return "denied";
+}
 int main()
 {
-    string s = "abcdcba";
-    int l = 0;
-    int r = s.length() - 1;
-    while (l < r)
+    while (true)
     {
-        if (s[l++] != s[r--])
-            cout << "false";
+        string s;
+        cin >> s;
+        // cout<<""
     }
-    cout << "true";
 }

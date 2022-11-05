@@ -6,31 +6,63 @@
 #include <stack>
 #include <queue>
 #include <unordered_map>
-#define col 5;
-#define row 5;
 using namespace std;
-void DFS(int n[][],int r,int c,bool visited[][])
+template <typename T>
+class bnode
 {
-    visited[r][c]=true;
-    for(int k=0;k<8;k++){
-        if(isSafe(n,rows,cols,visited)){
-            
+public:
+    T data;
+    bnode *left;
+    bnode *right;
+    bnode(T val)
+    {
+        data = val;
+        left = NULL : right = NULL;
+    }
+    ~bnode(
+        delete left;
+        delete right;)
+};
+
+bnode<int> *takeinputlevelwise()
+{
+    int rootdata;
+    cout << "Enter root value";
+    cin >> rootdata;
+    queue<bnode<int> *> pendingnodes;
+    if (rootdata == -1)
+    {
+        return NULL;
+    }
+    bnode<int> *root = new bnode<int>(rootdata);
+    pendingnodes.push(root);
+    while (pendingnodes.size() != 0)
+    {
+        bnode<int> *front = pendingnodes.front();
+        pendingnodes.pop();
+        int leftdata;
+        cout << "enter left child of " << front->data;
+        cin >> leftdata;
+        if (leftdata != -1)
+        {
+            bnode<int> *leftchild = new bnode<int>(leftdata);
+            front->left = leftchild;
+            pendingnodes.push(front->left);
+        }
+        int rightdata;
+        cout << "enter right child of " << front->data;
+        cin >> rightdata;
+        if (rightdata != -1)
+        {
+            bnode<int> *rightchild = new bnode<int>(rightdata);
+            front->right = rightchild;
+            pendingnodes.push(front->right);
         }
     }
+    return root;
 }
-int count(int m[row][col]){
-    bool visited[row][col];
-    int count=0;
-    for(int i =0;i<row;i++){
-        for(int j=0;j<col;j++){
-            if(m[i][j] && !visited[i][j]){
-                DFS(m,i,j,visited);
-                count++;
-            }
-        }
-    }
-    return count;
-}
+
+
 int main()
 {
 }

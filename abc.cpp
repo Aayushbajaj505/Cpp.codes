@@ -101,6 +101,33 @@ int height(bnode<int> *root)
     return max(height(root->left), height(root->right)) + 1;
 }
 
+int levelwise(bnode<int> *root)
+{
+    queue<bnode<int> *> pendingnodes;
+    pendingnodes.push(root);
+    while (pendingnodes.size() != 0)
+    {
+        int count = pendingnodes.size();
+        while (count > 0)
+        {
+            bnode<int> *front = pendingnodes.front();
+            cout << front->data << ":";
+            pendingnodes.pop();
+            if (front->left != NULL)
+            {
+                cout << "L" << front->left->data;
+                pendingnodes.push(front->left);
+            }
+            if (front->right != NULL)
+            {
+                cout << "R" << front->right->data;
+                pendingnodes.push(front->right);
+            }
+            count--;
+        }
+        cout << endl;
+    }
+}
 int main()
 {
 }
